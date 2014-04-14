@@ -5,3 +5,38 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Admin.create!(name: "Admin", email: "admin@example.com", password: "foobar",
+  password_confirmation: "foobar")
+
+(0..20).each do |i|
+  User.create!(name:"User #{i}", email: "user#{i + 1}@example.com", password: "foobar",
+    password_confirmation: "foobar")
+end
+
+subjects = ["Rails", "Git", "Mysql"]
+(0..2).each do |i|
+  subject = Subject.create!(name: "#{subjects[i]}")
+  (0..9).each do |j|
+    question = subject.questions.create!(content: "question #{j + 1}", level: 1)
+    correct_answer = rand(4)
+    (0..3).each do |k|
+      answer = question.answers.build(content: "answer #{k + 1}")
+      answer.correct = true if k == correct_answer
+      answer.save
+    end
+  end
+
+  subject.subject_tests.create!(total_questions: 8, time_limit: 30)
+end
+
+SubjectTest.all[0..2].each do |subject_test|
+  User.all[0..5].each do |user|
+    answer_sheet = user.answer_sheets.create(subject_test_id: subject_test.id)
+    subject_questions = subject_test.subject.questions
+    (0..(subject_test.total_questions - 1)).each do |k|
+      answer_sheet.answer_sheet_details.create(
+        question_id: subject_questions[k])
+    end
+  end
+end
