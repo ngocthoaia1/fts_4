@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140412065738) do
   create_table "subject_tests", force: true do |t|
     t.integer  "subject_id"
     t.integer  "total_questions"
-    t.datetime "time_limit"
+    t.integer  "time_limit"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -3,7 +3,7 @@ class CreateSubjectTests < ActiveRecord::Migration
     create_table :subject_tests do |t|
       t.integer :subject_id
       t.integer :total_questions
-      t.datetime :time_limit
+      t.integer :time_limit
 
       t.timestamps
     end
