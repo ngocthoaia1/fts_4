@@ -1,12 +1,12 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "test app", '#', id: "logo" %>
+      <%= link_to "test app", "#", id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home", '/home' %></li>
-          <li><%= link_to "Help", '/help' %></li>
-          <% if signed_in? %>
+          <li><%= link_to "Home", "/admin/home" %></li>
+          <li><%= link_to "Help", "/admin/help" %></li>
+          <% if admin_signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
@@ -16,12 +16,12 @@
                 <li><%= link_to "Settings", "" %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
+                  <%= link_to "Sign out", admin_signout_path, method: "delete" %>
                 </li>
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign in", '/signin' %></li>
+            <li><%= link_to "Sign in", "/admin/signin" %></li>
           <% end %>
         </ul>
       </nav>
