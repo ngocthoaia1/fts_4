@@ -1,0 +1,5 @@
+<%= form_for [:admin, @subject] do |f| %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+  <p><%= f.submit "Submit", class: "btn btn-large btn-primary" %></p>
+<% end %>

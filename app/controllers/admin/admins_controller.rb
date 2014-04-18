@@ -40,9 +40,9 @@ class Admin::AdminsController < Admin::ApplicationController
   def destroy
     if current_admin? @admin
       flash[:error] = "You can't delete your account"
-    else 
-      flash[:success] = "Admin: #{@admin.name} destroyed."
+    else
       @admin.destroy
+      flash[:success] = "Admin: #{@admin.name} destroyed."      
     end
     redirect_to admin_admins_url
   end
