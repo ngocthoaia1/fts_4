@@ -22,6 +22,7 @@ Fts4::Application.routes.draw do
     resources :sessions
     resources :admins
     resources :users
+    resources :subjects
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
