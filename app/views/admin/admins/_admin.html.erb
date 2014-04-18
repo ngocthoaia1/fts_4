@@ -1,0 +1,9 @@
+<li>
+  <%= gravatar_for admin %>
+  Name: <%= link_to admin.name, admin_admin_path(admin) %>,
+    <%= link_to "edit", edit_admin_admin_path(admin)%>
+    <% unless current_admin? admin %>
+      | <%= link_to "delete", admin_admin_path(admin), method: :delete,
+        data: { confirm: "You sure?" } %>
+    <% end %>
+</li>

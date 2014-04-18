@@ -20,6 +20,8 @@ Fts4::Application.routes.draw do
     match "/signout", to: "sessions#destroy",     via: :delete
     match "/home",    to: "static_pages#home",    via: :get
     resources :sessions
+    resources :admins
+    resources :users
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

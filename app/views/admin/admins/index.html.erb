@@ -1,0 +1,8 @@
+<% provide(:title, "List admins") %>
+<h1>List Admins</h1>
+<h2><%= link_to "Create new admin", new_admin_admin_path %> </h2>
+<%= will_paginate %>
+<ul class="admins">
+  <%= render @admins %>
+</ul>
+<%= will_paginate %>

@@ -1,6 +1,6 @@
 module Admin::SessionsHelper
 
-  def admin_sign_in(admin)
+  def admin_sign_in admin
     admin.update_attributes(remember_token: SecureRandom.urlsafe_base64)
     cookies.permanent[:remember_token] = admin.remember_token
     self.current_admin= admin

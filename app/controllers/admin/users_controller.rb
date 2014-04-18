@@ -1,6 +1,9 @@
-class UsersController < ApplicationController
+class Admin::UsersController < Admin::ApplicationController
+  before_action :load_object, only: [:show, :edit, :update, :destroy]
 
-  before_action :load_object, only: [:show, :edit, :update]
+  def index
+    @users = User.all.paginate page: params[:page], per_page: 15
+  end
 
   def show
   end
@@ -12,26 +15,20 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def create
-    user = User.new user_params
-    if user.save
-      flash[:success] = "You finished signup!"
-      sign_in user
-      redirect_to user
-    else
-      flash[:error] = "You can't create this accout!"
-      render 'new'
-    end    
-  end
-
   def update
     if @user.update_attributes user_params
       flash[:success] = "Profile updated"
-      redirect_to @user
+      redirect_to admin_users_url
     else
       flash[:error] = "input error"
       render 'edit'
     end
+  end
+
+  def destroy    
+    @user.destroy
+    flash[:success] = "User: #{@user.name} destroyed."
+    redirect_to admin_users_url
   end
 
   private
