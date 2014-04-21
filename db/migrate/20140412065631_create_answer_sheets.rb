@@ -2,7 +2,7 @@ class CreateAnswerSheets < ActiveRecord::Migration
   def change
     create_table :answer_sheets do |t|
       t.integer :user_id
-      t.integer :subject_test_id
+      t.integer :examination_id
       t.integer :total_correct_answereds
       t.boolean :passed
 
@@ -10,6 +10,6 @@ class CreateAnswerSheets < ActiveRecord::Migration
     end
 
     add_index :answer_sheets, :user_id
-    add_index :answer_sheets, :subject_test_id
+    add_index :answer_sheets, :examination_id
   end
 end
