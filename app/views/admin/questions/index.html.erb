@@ -1,0 +1,16 @@
+<% provide(:title, "Questions") %>
+<h1>Questions</h1>
+<%= will_paginate %>
+<ul class="list questions">
+  <% @questions.each do |question| %>
+    <li>
+      Question: <%= link_to question.content,
+        admin_question_path(question) %>
+      <%= link_to "Edit", edit_admin_question_path(question) %> |
+      <%= link_to "Delete", admin_question_path(question),
+        method: :delete, data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>
+<%= link_to "New question", new_admin_question_path %>

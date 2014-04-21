@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="span6 offset3">
+    <h1>Question</h1>
+    <h2><%= @question.content %></h2>
+    <div class="list">
+      <% @question.answers.each do |answer| %>
+          <li>
+          Answer: <%= answer.content %> |
+          <% if answer.correct? %>
+            correct answer!
+          <% else %>
+            wrong answer!
+          <% end %>
+          </li>
+      <% end %>
+    </div>
+  </div>
+</div>
