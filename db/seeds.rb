@@ -27,14 +27,15 @@ subjects = ["Rails", "Git", "Mysql"]
     end
   end
 
-  subject.subject_tests.create!(total_questions: 8, time_limit: 30)
+  subject.examinations.create!(name: "#{subject.name} examination",
+    total_questions: 8, time_limit: 30)
 end
 
-SubjectTest.all[0..2].each do |subject_test|
+Examination.all[0..2].each do |examination|
   User.all[0..5].each do |user|
-    answer_sheet = user.answer_sheets.create(subject_test_id: subject_test.id)
-    subject_questions = subject_test.subject.questions
-    (0..(subject_test.total_questions - 1)).each do |k|
+    answer_sheet = user.answer_sheets.create(examination_id: examination.id)
+    subject_questions = examination.subject.questions
+    (0..(examination.total_questions - 1)).each do |k|
       answer_sheet.answer_sheet_details.create(
         question_id: subject_questions[k])
     end

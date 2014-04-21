@@ -24,6 +24,7 @@ Fts4::Application.routes.draw do
     resources :users
     resources :subjects
     resources :questions
+    resources :examinations
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

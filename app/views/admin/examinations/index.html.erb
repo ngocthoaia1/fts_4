@@ -1,0 +1,16 @@
+<h1>Examination</h1>
+<%= will_paginate %>
+<ul class="list examinations">
+  <% @examinations.each do |examination| %>
+    <li>
+      Examination: <%= link_to examination.name,
+        admin_examination_path(examination) %>
+      created at: <%= Date.parse(examination.created_at.to_s).strftime("%d-%m-%Y") %>
+      <%= link_to "Edit", edit_admin_examination_path(examination) %> |
+      <%= link_to "Delete", admin_examination_path(examination),
+        method: :delete, data: { confirm: "You sure?" } %>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>
+<%= link_to "New examination", new_admin_examination_path %>

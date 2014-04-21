@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 20140412065738) do
 
   create_table "answer_sheets", force: true do |t|
     t.integer  "user_id"
-    t.integer  "subject_test_id"
+    t.integer  "examination_id"
     t.integer  "total_correct_answereds"
     t.boolean  "passed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "answer_sheets", ["subject_test_id"], name: "index_answer_sheets_on_subject_test_id"
+  add_index "answer_sheets", ["examination_id"], name: "index_answer_sheets_on_examination_id"
   add_index "answer_sheets", ["user_id"], name: "index_answer_sheets_on_user_id"
 
   create_table "answers", force: true do |t|
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 20140412065738) do
     t.datetime "updated_at"
   end
 
+  create_table "examinations", force: true do |t|
+    t.string   "name"
+    t.integer  "subject_id"
+    t.integer  "total_questions"
+    t.integer  "time_limit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "examinations", ["subject_id"], name: "index_examinations_on_subject_id"
+
   create_table "questions", force: true do |t|
     t.integer  "subject_id"
     t.string   "content"
@@ -61,16 +72,6 @@ ActiveRecord::Schema.define(version: 20140412065738) do
   end
 
   add_index "questions", ["subject_id"], name: "index_questions_on_subject_id"
-
-  create_table "subject_tests", force: true do |t|
-    t.integer  "subject_id"
-    t.integer  "total_questions"
-    t.integer  "time_limit"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "subject_tests", ["subject_id"], name: "index_subject_tests_on_subject_id"
 
   create_table "subjects", force: true do |t|
     t.string   "name"
