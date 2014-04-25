@@ -1,0 +1,13 @@
+<h1>Examination</h1>
+<%= will_paginate %>
+<ul class="list examinations">
+  <% @examinations.each do |examination| %>
+    <li>
+      Examination: <%= link_to examination.name,
+        examination_path(examination) %>
+      created at: <%= Date.parse(examination.created_at.to_s).strftime("%d-%m-%Y") %>
+      <%= link_to "Start", examination_answer_sheets_path(examination), method: :create %>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>

@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140412065738) do
   create_table "answer_sheets", force: true do |t|
     t.integer  "user_id"
     t.integer  "examination_id"
-    t.integer  "total_correct_answereds"
+    t.integer  "total_correct_answered"
     t.boolean  "passed"
     t.datetime "created_at"
     t.datetime "updated_at"

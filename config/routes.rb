@@ -11,6 +11,9 @@ Fts4::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :examinations, only: [:index, :show] do
+    resources :answer_sheets
+  end
 
   namespace :admin do
     root to: "static_pages#home"

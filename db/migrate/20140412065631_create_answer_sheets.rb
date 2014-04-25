@@ -3,7 +3,7 @@ class CreateAnswerSheets < ActiveRecord::Migration
     create_table :answer_sheets do |t|
       t.integer :user_id
       t.integer :examination_id
-      t.integer :total_correct_answereds
+      t.integer :total_correct_answered
       t.boolean :passed
 
       t.timestamps

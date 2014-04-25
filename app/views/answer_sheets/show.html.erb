@@ -1,0 +1,32 @@
+<h1><%= @examination.name %></h1>
+<h2>Total correct answer: <%= @answer_sheet.total_correct_answered %></h2>
+<div class="row">
+  <div class="span6 offset1">
+    <% i = 0 %>
+    <%= form_for(@answer_sheet, url: examination_answer_sheet_path(@examination, @answer_sheet),
+      method: :patch) do |f| %>
+      <%= f.fields_for :answer_sheet_details do |builder| %>
+        <% answer_sheet_detail = builder.object %>
+        <% question = answer_sheet_detail.question %>
+        <div><%= i = i + 1 %>. <%= question.content %></div>
+        <% question.answers.each do |answer| %>
+          <div class="answer">
+            <% answer.id == answer_sheet_detail.answer_id ? checked = true : checked = false %>
+            <%= builder.radio_button :answer_id, answer.id, checked: checked, disabled: true %>
+            <%= answer.content %>
+          </div>
+        <% end %>
+        <% if answer_sheet_detail.answer.present? %>
+          <% if answer_sheet_detail.answer.correct? %>
+            <div class="text-success">Answer correct!</div>
+          <% else %>
+            <div class="text-error">Wrong answer!</div> 
+          <% end %>
+        <% else %>
+          <div class="text-error">Wrong answer!</div>
+        <% end %>
+     <% end %>
+     <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
